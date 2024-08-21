@@ -1,0 +1,29 @@
+@import url('header.css');
+@import url('main.css');
+@import url('rodape.css');
+@import url('grid-queries.css');
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    border: 0px;
+}
+
+body {
+    width: 100vw;
+    min-width: 400px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #373737;
+    overflow-x: hidden;
+    font-weight: 600;
+}
+
+.align-center {
+    display: flex;
+    align-items: center;
+}
+
+.justify-center {
+    justify-content: center;
+}

@@ -1,0 +1,22 @@
+@import url(header.css);
+@import url(footer.css);
+@import url(main.css);
+
+* {
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  background: #191919;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+}
+
+.cabecalho, .rodape {
+  height: 140px;
+  width: 100%;
+  background: #131212;
+}

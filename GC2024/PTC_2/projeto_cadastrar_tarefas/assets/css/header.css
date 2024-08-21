@@ -1,0 +1,56 @@
+.cabecalho {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 1px groove orange;
+
+    & .logo {
+        height: 120px;
+        width: clamp(120px, 100%, 120px);
+        transition: 500ms;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+
+        &>img {
+            width: 100%;
+        }
+    }
+
+    & .navigation {
+        height: 60px;
+        width: 360px;
+        gap: 10px;
+
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(1, 60px);
+
+        & .nav-tab {
+            display: flex;
+            transition: 500ms;
+            text-transform: uppercase;
+            border-radius: 20px;
+
+            &:hover{
+                background: #2b2b2b;
+                box-shadow: 0 0 5px yellowgreen;
+                transform: scale(1.25);
+            }
+
+            & a {
+                line-height: 60px;
+                text-align: center;
+                display: block;
+                width: 100%;
+                height: 100%;
+                border-radius: 20px;
+
+                text-decoration: none;
+                color: white;
+            }
+        }
+    }
+}

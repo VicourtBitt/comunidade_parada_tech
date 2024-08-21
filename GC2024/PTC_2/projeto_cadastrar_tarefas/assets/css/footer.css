@@ -1,0 +1,16 @@
+.rodape {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+  
+    & .rodape-direitos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid white;
+      height: 40px;
+      width: 380px;
+    }
+  }
+  

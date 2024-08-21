@@ -1,0 +1,74 @@
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    &>.banner-central {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        align-items: center;
+        width: 800px;
+        height: 90%;
+  
+        & .pega-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+
+            & .button {
+                height: 30px;
+                width: 140px;
+                background: #272727;
+                border-radius: 15px;
+                transition: 500ms;
+                font-weight: 600;
+                color: white;
+
+                &:hover {
+                    background: #323232;
+                    transform: scale(1.15);
+                }
+            }
+
+            & .formulario {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                width: 300px;
+
+                & input, select {
+                    width: 90%;
+                    background: #353535;
+                    font-size: 16px;
+                    font-weight: 600;
+                    text-indent: 10px;
+                    border-radius: 20px;
+                    height: 40px;
+                    color: white;
+
+                    &:focus {
+                        box-shadow: 0 0 5px white;
+                    }
+                }
+            }
+        }
+    
+        & .mostra-info {
+            border: 1px solid white;
+        }
+    
+        & .pega-info, .mostra-info {
+            width: 45%;
+            height: 600px;
+        }
+    }  
+}
+
+.pagina-corpo {
+    height: 800px;
+    width: 100%;
+}

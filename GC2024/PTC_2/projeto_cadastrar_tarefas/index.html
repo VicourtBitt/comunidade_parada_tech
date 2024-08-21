@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel='stylesheet' type="text/css" href="./assets/css/styles.css">
+        <title>Projeto — PTC</title>
+    </head>
+    
+    <!-- Corpo do Site -->
+    <body class='align-center'>
+        <header class="cabecalho">
+            <div class="logo">
+                <img class="logo-image" loading="lazy" src="./assets/images/CPTLogo.webp">
+            </div>
+
+            <nav class="navigation">
+                <div class="nav-tab">
+                    <a href="index.html">
+                        HOME
+                    </a>
+                </div>
+
+                <div class="nav-tab">
+                    <a href="">
+                        GitHub
+                    </a>
+                </div>
+
+                <div class="nav-tab">
+                    <a href="">
+                        LinkedIn
+                    </a>
+                </div>
+            </nav>
+        </header>
+        
+        <main class="pagina-corpo">
+            <section class="banner-central">
+                <div class="pega-info">
+                    <h1>Cadastre suas Tarefas</h1>
+                    <form class="formulario" id="gather">
+                        <input 
+                            type="text" placeholder="Escreva seu nome..."
+                            class="form-input" id="gatherName" required
+                        >
+
+                        <input 
+                            type="text" placeholder="Escreva uma tarefa..."
+                            class="form-input" id="gatherChore" required
+                        >
+
+                        <select 
+                            class="form-input" id="gatherPriority" required
+                        >
+                            <option value="placeholder">Selecione uma prioridade</option>
+                            <option value="Urgente!">Urgente!</option>
+                            <option value="Importante">Importante</option>
+                            <option value="Casual">Casual</option>
+                            <option value="Indiferente">Indiferente</option>
+                        </select>
+                    </form>
+
+                    <button class="button" form="gather">
+                        Cadastrar Tarefa 
+                    </button>
+                </div>
+
+                <div class="mostra-info">
+
+                </div>
+            </section>
+        </main>
+
+        <dialog>
+            
+        </dialog>
+
+        <footer class="rodape">
+            <div class="rodape-direitos">
+                <h3 id="direitosCriador">
+                </h3>
+            </div>
+        </footer>
+
+        <!-- Componentização acima dos scripts -->
+
+        <!-- Scripts -->
+        <script src='./assets/js/scripts/script.js'></script>
+    </body>
+</html>

@@ -1,0 +1,15 @@
+@media (max-width: 575.8px) {
+    .corpo-pagina {
+        height: 1320px;
+    }
+
+    .layout-portfolio {
+        max-height: 900px;
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+    }
+
+    .portfolio-apresentacao {
+        grid-column: 1;
+    }
+}

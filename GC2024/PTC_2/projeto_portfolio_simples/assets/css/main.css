@@ -1,0 +1,98 @@
+.corpo-pagina {
+    justify-content: center;
+    height: 720px;
+    width: 100%;
+}
+
+.layout-portfolio {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    width: clamp(340px, 60%, 840px);
+    max-height: 600px;
+}
+
+.portfolio-text {
+    color: white;
+    font-weight: 600;
+    padding: 0.5rem;
+}
+
+.portfolio-foto {
+    justify-content: center;
+    flex-direction: column;
+
+    & img {
+        height: 240px;
+        transition: 500ms;
+        border-radius: 50%;
+
+        &:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 7px white;
+        }
+    }
+}
+
+.portfolio-table {
+    flex-direction: column;
+    justify-content: center;
+}
+
+.portfolio-stack {
+    display: grid;
+    gap: 5px;
+    justify-content: center;
+    align-content: space-around;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 100px;
+    grid-auto-flow: dense;
+    overflow-y: scroll;
+    max-height: 300px;
+    padding: 1rem;
+
+    & .stack-item {
+        width: 100%;
+
+        &> img {
+            height: 100%;
+            transition: 500ms;
+
+            &:hover {
+                transform: scale(1.1)
+            }
+        }
+    }
+}
+
+.portfolio-apresentacao {
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    grid-column: span 2;
+
+    & .apresentacao {
+        display: block;
+        color: white;
+        font-weight: 600;
+        text-align: justify;
+        width: 85%
+    }
+}
+
+.botao {
+    background: #252525;
+    text-align: center;
+    border-radius: 15px;
+    height: 35px;
+    line-height: 35px;
+    width: 140px;
+    transition: 500ms;
+    color: white;
+    text-decoration: none;
+
+    &:hover {
+        transform: scale(1.1)
+    }
+}

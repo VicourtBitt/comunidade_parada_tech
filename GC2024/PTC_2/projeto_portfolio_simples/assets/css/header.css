@@ -1,0 +1,16 @@
+.cabecalho {
+    flex-direction: row;
+    justify-content: space-around;
+    height: 120px;
+    width: 100%;
+    background: #252525;
+
+    & img {
+        height: 100px;
+        transition: 500ms;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+}
