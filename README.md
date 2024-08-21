@@ -8,8 +8,7 @@ Feito com o objetivo de armazenar as aulas realizadas em cada Parada Tech da Com
 │       ├── SLIDES
 │       ├── CODIGOS (se houver)
 │       ├── LINKS (se houver)
-│       ├── GRAVACAO (se houver o link)
-│       └── rodape.css
+│       └── GRAVACAO (se houver o link)
 └── GC{ANO2}
 ```
 #### Sinta-se a vontade para dar um PR
