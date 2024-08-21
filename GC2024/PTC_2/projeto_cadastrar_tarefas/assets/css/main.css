@@ -57,10 +57,6 @@ main {
             }
         }
     
-        & .mostra-info {
-            border: 1px solid white;
-        }
-    
         & .pega-info, .mostra-info {
             width: 45%;
             height: 600px;
@@ -71,4 +67,14 @@ main {
 .pagina-corpo {
     height: 800px;
     width: 100%;
+}
+
+.mostra-info {
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    gap: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 1rem;
 }

@@ -1,0 +1,38 @@
+.cada-tarefa {
+    padding: 0.5rem;
+    border: 2px solid #505050;
+    transition: 500ms;
+
+    &:first-child {
+        border-radius: 15px 15px 0 0;
+    }
+
+    &:last-child {
+        border-radius: 0 0 15px 15px;
+    }
+
+    & .tarefa-nome {
+        font-size: 24px;
+    }
+
+    & .tarefa-responsavel {
+        font-size: 18px;
+        font-weight: 100;
+        font-style: italic;
+    }
+
+    & .tarefa-prioridade {
+        text-align: right;
+    }
+
+    &:hover {
+        transform: scale(1.05);
+    }
+
+    & .tarefa-button {
+        width: 60px;
+        height: 20px;
+        border-radius: 10px;
+        background: #793939
+    }
+}
