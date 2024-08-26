@@ -11,4 +11,9 @@ Feito com o objetivo de armazenar as aulas realizadas em cada Parada Tech da Com
 │       └── GRAVACAO (se houver o link)
 └── GC{ANO2}
 ```
+
+### EDIÇÕES REALIZADAS
+- 1° Ed. Resumão Python — Do Básico ao OOP;
+- 2° Ed. Iniciação em Front-End — HTML/CSS e JS;
+- 3° Ed. Introdução a SQL com Python (em breve!);
 #### Sinta-se a vontade para dar um PR
