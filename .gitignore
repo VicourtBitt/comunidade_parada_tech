@@ -1,0 +1,7 @@
+.vscode
+node_modules
+package.json
+venv/
+.env
+__pycache__/
+*.cpython-39.pyc

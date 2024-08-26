@@ -43,7 +43,7 @@ export const criarTarefa = async (obj, tabela, type) => {
     const btnTarefas = document.querySelectorAll('.tarefa-button')
     btnTarefas.forEach((btn) => {
         btn.addEventListener('click', (e) => {
-            btn.parentNode.remove(self)
+            btn.parentNode
         })
     })
 
