@@ -1,0 +1,15 @@
+O PASSO-A-PASSO NECESSÁRIO PARA VOCÊ PODER MEXER NESSE PROJETO
+
+1° Dentro da pasta 'projeto_controlador', acesse o 'database.py' e descomente
+o que for necessário para rodar o código (será falado na PTC).
+
+2° Certifique-se que os cabeçalhos de import estão corretos, para que não haja
+erro de importação.
+
+3° A maioria dos erros de processo pode cair no 'main.log' arquivo feito para 
+acostumar a utilização de um log de erros.
+
+4° Todos os modulos utilizados são nativos do Python a esse ponto, mas sinta-se
+a vontade para baixar outros conforme a necessidade.
+
+~ Victor Bittencourt
