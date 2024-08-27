@@ -46,8 +46,7 @@ class AlunosController:
 class SQLiteConnection:
     """Classe responsável por se conectar a database, permitindo
     ações como select, insert, update e delete. Tudo com DocStrings
-    e seus parametros adicionais conforme documentação
-    """
+    e seus parametros adicionais conforme documentação."""
 
     def __init__(self, database):
         self._database = sqlite3.connect(database)
@@ -71,7 +70,7 @@ class SQLiteConnection:
             cur = self._database.cursor()
             cur.execute(sql, valuesToInsert)
 
-            # ENVIO DOS VALORES
+            # ENVIO DOS VALORES DE FORMA PERMANENTE
             self._database.commit()
             return cur.lastrowid
         
