@@ -19,28 +19,36 @@ class AlunosController:
     def __init__(self, database: str):
         self._connection = SQLiteConnection(database)
     
-    # @classmethod
-    # def criarAluno(cls, name, surname):
-    #     return cls(name, surname)
-    
     def inserirAluno(self):
         """ Função do controlador que recebe o nome do usuário e 
         insere ele na classe de conexão do SQL, mediando informação. """
         while True:
-            nome = input('Insira o nome do novo aluno: ')
-            sobrenome = input('Insira o sobrenome do novo aluno: ')
+            cpfCnpj = self.pegaInput(str, "Escreva o CPF/CNPJ somente com números: ")
+            nome = self.pegaInput(str, "Escreva o nome do aluno: ")
+            sobrenome = self.pegaInput(str, 'Escreva o sobrenome do aluno: ')
+            idade = self.pegaInput(int, "Escreva a idade do aluno: ")
+            genero = self.pegaInput(str, "Escreva o gênero\n[Masculino]-[Feminino]-[Não-Binário]: ")
+            telefone = self.pegaInput(str, "Escreva o telefone do aluno, somente numeros: ")
 
-            if (nome == 'sair' or sobrenome == 'sair'):
+            if not nome or not sobrenome or not cpfCnpj or not idade or not genero:
                 break
 
-            return self._connection.criarEstudante((nome, sobrenome))
-        
+            idRegistro = self._connection.criarRegistro((cpfCnpj,))
+            idInfo = self._connection.criarEstudante((nome, sobrenome, idade, genero, idRegistro))
+            return self._connection.criarTelefone((telefone, idInfo))
+
+
     def todosOsAlunos(self):
         """ Função do controlador que pega todos os alunos dentro do
         DB pela SQLConnection e os devolve para exibição na tela. """
-        print("ID - NOME - SOBRENOME - CRIADO EM")
-        for alunos in self._connection.pegarTodosOsEstudantes():
-            print(f'{alunos[0]} | {alunos[1]} | {alunos[2]} | {alunos[3]}')
+        print("ID - NOME - SOBRENOME - IDADE - GENERO - REGISTRO")
+        alunos = self._connection.pegarTodosOsEstudantes()
+        if not alunos:
+            print("Nenhum aluno cadastrado")
+            return False
+        
+        for aluno in self._connection.pegarTodosOsEstudantes():
+            print(f'{aluno[0]} | {aluno[1]} | {aluno[2]} | {aluno[3]} | {aluno[4]} | {aluno[5]}')
         print()
 
     def deletaAluno(self):
@@ -48,13 +56,30 @@ class AlunosController:
         para a query responsável por deletar um registro de aluno no SQL
         Connection. """
         print("É recomendado ver a lista de alunos antes de executar.")
-        id = input('Escolha o ID do estudante a ser eliminado: ')
-
-        if not isinstance(id, int):
-            print("ID não foi inserido corretamente.")
-            return False
+        id = self.pegaInput(int, "Insira o ID do estudante que deseja remover: ")
+        tabela = self.pegaInput(str, "Insira a tabela da qual deseja excluir: ")
         
-        self._connection.apagarEstudanteEspecifico(int(id))
+        try:
+            if not isinstance(id, int):
+                print("ID não foi inserido corretamente.")
+                raise ValueError('ID foi inserido incorretamente.')
+            
+        except (ValueError) as e:
+            addIntoLog('info', e)
+
+        self._connection.apagarEstudanteEspecifico(id, tabela)
+
+    @staticmethod
+    def pegaInput(type, texto: str, lower= False):
+        try:
+            value = type(input(texto)).lower() if lower else type(input(texto))
+            if value == 'sair':
+                return False
+            
+        except (ValueError, TypeError, NameError) as e:
+            addIntoLog('info', e)
+            return False
+        return value
 
     
 class SQLiteConnection:
@@ -65,20 +90,46 @@ class SQLiteConnection:
     def __init__(self, database):
         self._database = sqlite3.connect(database)
 
-    def criarEstudante(self, valuesToInsert: tuple):
-        """ Query com docstring literal para postar
-        o novo estudante no sistema. Alunos também 
-        será a tabela default 
-        > Example:
-        - sql = '''INSERT INTO alunos (firstName, lastName) VALUES (?, ?)'''
-        - valuesToInsert = ('Victor', 'Bittencourt')
-        - c = cursor.execute(sql, valuesToInsert) """
+    def criarRegistro(self, valuesToInsert: tuple):
+        """Cria registro de aluno na tabela alunosRegistro"""
+        try:
+            sql = """
+                INSERT INTO alunosRegistro (cpf_cnpj)
+                VALUES (?)
+            """
 
+            cur = self._database.cursor()
+            cur.execute(sql, valuesToInsert)
+            self._database.commit()
+            return cur.lastrowid
+        
+        except (ValueError, TypeError) as e:
+            addIntoLog('error', e)
+
+    def criarTelefone(self, valuesToInsert: tuple):
+        """Cria telefone do aluno na tabela alunosTelefone"""
+        try:
+            sql = """
+                INSERT INTO alunosTelefone (telefone, idInfo)
+                VALUES (?, ?)
+            """
+            cur = self._database.cursor()
+            cur.execute(sql, valuesToInsert)
+
+            # ENVIO DOS VALORES DE FORMA PERMANENTE
+            self._database.commit()
+            return cur.lastrowid
+        
+        except (ValueError, TypeError) as e:
+            addIntoLog('error', e)
+
+    def criarEstudante(self, valuesToInsert: tuple):
+        """Cria informações do aluno na tabela alunosInfo"""
         try: 
             # QUERY LITERAL
             sql = """
-                INSERT INTO alunos (firstName, lastName)
-                VALUES (?, ?)
+                INSERT INTO alunosInfo (nome, sobrenome, idade, genero, idRegistro)
+                VALUES (?, ?, ?, ?, ?)
             """
 
             cur = self._database.cursor()
@@ -91,7 +142,7 @@ class SQLiteConnection:
         except (ValueError, TypeError) as e:
             addIntoLog('error', e)
     
-    def pegarTodosOsEstudantes(self, table: str = 'alunos'):
+    def pegarTodosOsEstudantes(self, table: str = 'alunosInfo'):
         """ Query com f-strig literal para resgatar
         todos os estudantes cadastrados. Com alunos 
         como a tabela default. """
@@ -113,9 +164,9 @@ class SQLiteConnection:
         except (ValueError, TypeError) as e:
             addIntoLog('error', e)
 
-    def apagarEstudanteEspecifico(self, id: int):
+    def apagarEstudanteEspecifico(self, id: int, table: str):
         try: 
-            sql = f'DELETE FROM alunos WHERE id = {id}'
+            sql = f'DELETE FROM {table} WHERE id = {id};'
 
             cur = self._database.cursor()
             cur.execute(sql)
@@ -124,6 +175,8 @@ class SQLiteConnection:
         except (ValueError, TypeError, NameError) as e:
             addIntoLog('error', e)
 
+    def atualizaEstudanteEspecifico(self, id: int):
+        ...
 
 def addIntoLog(type: str, mensagem: str):
     """ Função utilizada para colocar erros/avisos
