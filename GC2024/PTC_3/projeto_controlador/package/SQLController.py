@@ -1,7 +1,13 @@
+# Importação do SQLite3, biblioteca nativo do Python
 import sqlite3
+
+# Importação da biblioteca de log, nativa do Python.
 import logging
 
+# Referenciação do log na raiz do projeto.
 logger = logging.getLogger('main.log')
+
+# Configuração do arquivo de log.
 logging.basicConfig(
     filename='main.log', 
     level= logging.ERROR,
@@ -18,6 +24,8 @@ class AlunosController:
     #     return cls(name, surname)
     
     def inserirAluno(self):
+        """ Função do controlador que recebe o nome do usuário e 
+        insere ele na classe de conexão do SQL, mediando informação. """
         while True:
             nome = input('Insira o nome do novo aluno: ')
             sobrenome = input('Insira o sobrenome do novo aluno: ')
@@ -28,16 +36,22 @@ class AlunosController:
             return self._connection.criarEstudante((nome, sobrenome))
         
     def todosOsAlunos(self):
+        """ Função do controlador que pega todos os alunos dentro do
+        DB pela SQLConnection e os devolve para exibição na tela. """
         print("ID - NOME - SOBRENOME - CRIADO EM")
         for alunos in self._connection.pegarTodosOsEstudantes():
-            print(alunos)
+            print(f'{alunos[0]} | {alunos[1]} | {alunos[2]} | {alunos[3]}')
         print()
 
     def deletaAluno(self):
+        """ Função do controlador responsável por receber um ID e passar
+        para a query responsável por deletar um registro de aluno no SQL
+        Connection. """
         print("É recomendado ver a lista de alunos antes de executar.")
         id = input('Escolha o ID do estudante a ser eliminado: ')
 
         if not isinstance(id, int):
+            print("ID não foi inserido corretamente.")
             return False
         
         self._connection.apagarEstudanteEspecifico(int(id))
