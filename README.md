@@ -15,5 +15,6 @@ Feito com o objetivo de armazenar as aulas realizadas em cada Parada Tech da Com
 ### EDIÇÕES REALIZADAS
 - 1° Ed. Resumão Python — Do Básico ao OOP;
 - 2° Ed. Iniciação em Front-End — HTML/CSS e JS;
-- 3° Ed. Introdução a SQL com Python (em breve!);
+- 3° Ed. Introdução a SQL com Python;
+- 4° Ed. TEMA EM ESCOLHA (Em breve!)
 #### Sinta-se a vontade para dar um PR
